@@ -9,6 +9,8 @@
     "declaration": true,
     "outDir": "./dist",
     "declarationMap": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": false,
     "baseUrl": ".",
     "paths": {
       "@/*": [
