@@ -66,6 +66,7 @@ export function getValidateFactory<Form extends GenericForm>(
   ): Readonly<Ref<ValidationResponseWithoutValue<Form>>>
   function validate<Path extends FlatPath<Form>>(path?: Path) {
     try {
+      console.log('is a function?', validateLogic)
       return validateLogic(path)
     } catch (error) {
       if (error instanceof Error) {
