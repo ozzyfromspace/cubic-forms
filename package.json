@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git@github.com:ozzyfromspace/cubic-forms.git"
   },
+  "bugs": {
+    "url": "https://github.com/ozzyfromspace/cubic-forms/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
