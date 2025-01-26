@@ -42,6 +42,7 @@ export default defineConfig({
   },
   build: {
     lib: {
+      formats: ['es', 'cjs'],
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'CubicForms',
       fileName: (format) => {
@@ -50,16 +51,17 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: ['vue', 'nuxt', '@vue/runtime-core', 'lodash', 'zod', 'immer'],
-      output: {
-        globals: {
-          vue: 'Vue',
-          nuxt: 'Nuxt',
-          lodash: '_',
-          zod: 'Zod',
-          immer: 'Immer',
-        },
-      },
+      external: [
+        'vue',
+        'nuxt',
+        '@vue/runtime-core',
+        'lodash',
+        'zod',
+        'immer',
+        '#app-manifest',
+        /^#build\//, // Regex to exclude anything matching "#build/*" from nuxt
+        /^#internal\//, // Regex to exclude anything matching "#internal/*" from nuxt,
+      ],
     },
   },
 })
