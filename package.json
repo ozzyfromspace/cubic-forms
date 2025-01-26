@@ -1,6 +1,6 @@
 {
   "name": "cubic-forms",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Flexible, schema driven forms. No strings attached.",
   "repository": {
@@ -21,16 +21,12 @@
   "module": "dist/cubicforms.es.js",
   "types": "dist/index.d.ts",
   "keywords": [
-    "vue",
     "vue3",
-    "nuxt",
     "nuxt3",
-    "form",
+    "forms",
     "composable",
-    "form-manager",
-    "cubicforms",
-    "cubic forms",
-    "cubicforms.com"
+    "cubic-forms",
+    "form-manager"
   ],
   "author": "Oswald Chisala",
   "license": "MIT",
