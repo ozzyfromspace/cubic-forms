@@ -1,8 +1,9 @@
 import type { FormKey } from '@/types'
+import { useStateShim } from '@/utils/usestate-shim'
 import { useId } from 'vue'
 
 export const useFormKey = (key?: FormKey) => {
-  const warningRaised = useState('use-form-key/warning-raised', () => false)
+  const warningRaised = useStateShim('use-form-key/warning-raised', () => false)
   const trimmedKey = key?.trim() ?? ''
   const warningNotYetRaisedOnClient = import.meta.client && !warningRaised.value
 

@@ -6,6 +6,7 @@ import {
 } from '@/utils/process-form'
 import { setValueFactory } from '@/utils/set-value'
 import type { GenericForm } from '@/utils/types'
+import { useStateShim } from '@/utils/usestate-shim'
 import { Ref, computed } from 'vue'
 
 export function getForm<Form extends GenericForm>(
@@ -21,7 +22,10 @@ export function getForm<Form extends GenericForm>(
   return form
 }
 export const useFormStore = <Form extends GenericForm>(formKey: FormKey) => {
-  const formStore = useState<FormStore<Form>>('useform/store', () => new Map())
+  const formStore = useStateShim<FormStore<Form>>(
+    'useform/store',
+    () => new Map(),
+  )
 
   function registerForm(form: Form) {
     if (formStore.value.has(formKey)) return
