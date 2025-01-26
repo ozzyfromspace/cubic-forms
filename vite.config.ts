@@ -50,6 +50,11 @@ export default defineConfig({
         return `cubicforms.${format}.js`
       },
     },
+    minify: 'terser',
+    terserOptions: {
+      mangle: false,
+      keep_fnames: true, // Preserve function names
+    },
     rollupOptions: {
       external: [
         'vue',
@@ -57,6 +62,7 @@ export default defineConfig({
         'nuxt/app',
         '@vue/runtime-core',
         'lodash',
+        'pinia',
         'zod',
         'immer',
         // '#app-manifest',
