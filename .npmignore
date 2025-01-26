@@ -17,6 +17,8 @@ scripts/
 build/
 # Keep /dist if that’s where your compiled output resides, e.g.
 # !dist/
+# global-nuxt.d.ts is not required in the consumer app, which knows about nuxt
+dist/global-nuxt.d.ts
 
 # ---------------------------------------------
 # 3) Tools / Config
