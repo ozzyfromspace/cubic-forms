@@ -64,3 +64,7 @@ Thumbs.db
 
 # Editor backups
 *~
+
+# Tarball files
+package
+*.tgz
