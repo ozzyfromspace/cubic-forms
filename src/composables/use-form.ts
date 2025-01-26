@@ -15,15 +15,20 @@ export const useForm = <
     DeepPartial<Form>
   >,
 ) => {
+  console.log('A')
   const { schema } = configuration
+  console.log('A2')
   const key = useFormKey(configuration.key)
+  console.log('A3')
   const computedSchema = getComputedSchema(key, schema)
+  console.log('A4')
   const initialStateResponse = computedSchema.getInitialState({
     useDefaultSchemaValues: true,
     constraints: configuration.initialState,
     validationMode: configuration.validationMode ?? 'lax',
   })
 
+  console.log('A5')
   const {
     getHandleSubmitFactory,
     getValidateFactory,
