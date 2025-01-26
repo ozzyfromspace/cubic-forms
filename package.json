@@ -1,5 +1,5 @@
 {
-  "name": "@cubic/forms",
+  "name": "cubic-forms",
   "version": "0.1.0",
   "private": false,
   "description": "Flexible, schema driven forms. No strings attached.",
