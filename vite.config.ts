@@ -54,6 +54,7 @@ export default defineConfig({
       external: [
         'vue',
         'nuxt',
+        'nuxt/app',
         '@vue/runtime-core',
         'lodash',
         'zod',
