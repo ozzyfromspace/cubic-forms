@@ -58,9 +58,9 @@ export default defineConfig({
         'lodash',
         'zod',
         'immer',
-        '#app-manifest',
-        /^#build\//, // Regex to exclude anything matching "#build/*" from nuxt
-        /^#internal\//, // Regex to exclude anything matching "#internal/*" from nuxt,
+        // '#app-manifest',
+        // /^#build\//, // Regex to exclude anything matching "#build/*" from nuxt
+        // /^#internal\//, // Regex to exclude anything matching "#internal/*" from nuxt,
       ],
     },
   },

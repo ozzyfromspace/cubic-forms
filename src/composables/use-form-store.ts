@@ -6,7 +6,6 @@ import {
 } from '@/utils/process-form'
 import { setValueFactory } from '@/utils/set-value'
 import type { GenericForm } from '@/utils/types'
-import { useState } from 'nuxt/app'
 import { Ref, computed } from 'vue'
 
 export function getForm<Form extends GenericForm>(
