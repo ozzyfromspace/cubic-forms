@@ -65,6 +65,7 @@ export default defineConfig({
         'pinia',
         'zod',
         'immer',
+        '#app',
         // '#app-manifest',
         // /^#build\//, // Regex to exclude anything matching "#build/*" from nuxt
         // /^#internal\//, // Regex to exclude anything matching "#internal/*" from nuxt,

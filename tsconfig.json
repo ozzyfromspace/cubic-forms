@@ -16,6 +16,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "#app": [
+        "types/#app.d.ts"
       ]
     },
     "types": [
