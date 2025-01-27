@@ -1,6 +1,9 @@
 name: Publish to npm
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       version_type:
@@ -11,6 +14,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Ensure write permissions for GITHUB_TOKEN
 
     steps:
       - name: Checkout code
@@ -28,19 +34,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # Set Git user identity for the commit
-      - name: Set Git user
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions Bot"
-
-      # Dynamically bump the version
       - name: Bump version
         run: pnpm version ${{ inputs.version_type }}
-
-      # Push to the branch to get everything updated
-      - name: Push version bump
-        run: git push --follow-tags
 
       - name: Run build
         run: pnpm build
@@ -51,4 +46,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Push version bump
-        run: git push --follow-tags
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git push --follow-tags
