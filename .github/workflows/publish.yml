@@ -2,12 +2,11 @@ name: Publish to npm
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
     inputs:
       version_type:
-        description: 'Version type (major, minor, patch)'
+        description: 'Version type (major, minor, patch, or a valid semver identifier)'
         required: true
         default: 'patch'
 
@@ -16,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Ensure write permissions for GITHUB_TOKEN
+      contents: write # Required to push tags/commits to your repo
 
     steps:
       - name: Checkout code
@@ -26,7 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: https://registry.npmjs.org/
+          registry-url: 'https://registry.npmjs.org/'
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -34,19 +33,23 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Run tests
+        run: pnpm test
+
       - name: Bump version
         run: pnpm version ${{ inputs.version_type }}
 
-      - name: Run build
+      - name: Push version bump
+        # Note: Make sure your main branch isn't protected from direct pushes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git push --follow-tags
+
+      - name: Build package
         run: pnpm build
 
       - name: Publish to npm
         run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Push version bump
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git push --follow-tags
