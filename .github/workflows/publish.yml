@@ -38,6 +38,10 @@ jobs:
       - name: Bump version
         run: pnpm version ${{ inputs.version_type }}
 
+      # Push to the branch to get everything updated
+      - name: Push version bump
+        run: git push --follow-tags
+
       - name: Run build
         run: pnpm build
 
