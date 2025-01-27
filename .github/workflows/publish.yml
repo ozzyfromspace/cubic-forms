@@ -32,6 +32,11 @@ jobs:
       - name: Run tests
         run: pnpm test
 
+      - name: Configure Git identity
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
       - name: Bump version
         run: |
           # If 'version_type' wasn't provided (like on a push event),
@@ -44,10 +49,7 @@ jobs:
           fi
 
       - name: Push version bump
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git push --follow-tags
+        run: git push --follow-tags
 
       - name: Build
         run: pnpm build
