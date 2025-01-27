@@ -1,9 +1,12 @@
 name: Publish to npm
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version type (major, minor, patch)'
+        required: true
+        default: 'patch'
 
 jobs:
   publish:
@@ -25,6 +28,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # Dynamically bump the version
+      - name: Bump version
+        run: pnpm version ${{ inputs.version_type }}
+
       - name: Run build
         run: pnpm build
 
@@ -32,3 +39,6 @@ jobs:
         run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push version bump
+        run: git push --follow-tags
