@@ -1,6 +1,6 @@
 {
   "name": "cubic-forms",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "private": false,
   "description": "Flexible, schema driven forms. No strings attached.",
   "repository": {
