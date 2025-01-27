@@ -36,12 +36,12 @@ function resolveUseState() {
 
 // Define a Pinia store for fallback state management
 function createFallbackStore(pinia: ReturnType<typeof createPinia>) {
-  return defineStore('fallbackState', () => {
+  return defineStore('useState/fallbackState', () => {
     const state = new Map<string, Ref<any>>()
 
     function get<T>(key: string, init?: () => T | Ref<T>): Ref<T> {
       if (!state.has(key)) {
-        state.set(key, ref(init ? init() : undefined))
+        state.set(key, ref(init ? init?.() : undefined))
       }
       return state.get(key) as Ref<T>
     }
