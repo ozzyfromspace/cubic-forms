@@ -29,6 +29,7 @@ dist/global-nuxt.d.ts
 vite.config.*
 tsconfig.json
 nuxt.config.*
+.github/
 
 # Optional, if you don’t want to publish these lock files
 *.lock
