@@ -36,7 +36,15 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [vue(), dts()],
+  plugins: [
+    vue(),
+    dts({
+      insertTypesEntry: true,
+      staticImport: true,
+      outDir: 'dist',
+      include: ['src/composables/**/*.ts'],
+    }),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
