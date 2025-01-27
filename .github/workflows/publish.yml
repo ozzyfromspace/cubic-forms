@@ -1,21 +1,18 @@
-name: Publish to npm
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
     inputs:
       version_type:
-        description: 'Version type (major, minor, patch, or a valid semver identifier)'
+        description: 'Version type (major, minor, patch)'
         required: true
         default: 'patch'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     permissions:
-      contents: write # Required to push tags/commits to your repo
+      contents: write
 
     steps:
       - name: Checkout code
@@ -25,7 +22,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org/'
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -37,16 +33,23 @@ jobs:
         run: pnpm test
 
       - name: Bump version
-        run: pnpm version ${{ inputs.version_type }}
+        run: |
+          # If 'version_type' wasn't provided (like on a push event),
+          # default to patch. If it was provided (manual dispatch),
+          # use that instead.
+          if [ -z "${{ github.event.inputs.version_type }}" ]; then
+            pnpm version patch
+          else
+            pnpm version ${{ github.event.inputs.version_type }}
+          fi
 
       - name: Push version bump
-        # Note: Make sure your main branch isn't protected from direct pushes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git push --follow-tags
 
-      - name: Build package
+      - name: Build
         run: pnpm build
 
       - name: Publish to npm
