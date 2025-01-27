@@ -1,8 +1,8 @@
 import type { AbstractSchema, UseFormConfiguration } from '@/types'
 import { getComputedSchema } from '@/utils/get-computed-schema'
 import type { DeepPartial, GenericForm } from '@/utils/types'
-import { useFormKey } from './use-form-key'
-import { useFormStore } from './use-form-store'
+import { useFormKey } from '../helper-composables/use-form-key'
+import { useFormStore } from '../helper-composables/use-form-store'
 
 export const useForm = <
   Form extends GenericForm,
