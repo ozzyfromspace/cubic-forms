@@ -28,6 +28,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # Set Git user identity for the commit
+      - name: Set Git user
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions Bot"
+
       # Dynamically bump the version
       - name: Bump version
         run: pnpm version ${{ inputs.version_type }}
