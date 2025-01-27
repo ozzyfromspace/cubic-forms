@@ -6,7 +6,7 @@ import {
 } from '@/utils/process-form'
 import { setValueFactory } from '@/utils/set-value'
 import type { GenericForm } from '@/utils/types'
-import { useStateShim } from '@/utils/usestate-shim'
+import { useStateShim } from '@/utils/use-state-shim'
 import { Ref, computed } from 'vue'
 
 export function getForm<Form extends GenericForm>(
