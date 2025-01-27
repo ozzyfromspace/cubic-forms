@@ -70,6 +70,7 @@ export default defineConfig({
         'zod',
         'immer',
         '#app',
+        '@vitejs/plugin-vue',
         ...builtinModules, // Externalize built-in modules without 'node:' prefix
         ...builtinModules.map((m) => `node:${m}`), // Externalize built-in modules with 'node:' prefix
         'globby', // Externalize globby
