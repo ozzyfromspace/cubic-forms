@@ -11,6 +11,7 @@
     "declarationMap": true,
     "declarationDir": "dist/types",
     "emitDeclarationOnly": false,
+    "exactOptionalPropertyTypes": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [

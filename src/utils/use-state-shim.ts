@@ -57,26 +57,34 @@ export function useStateShim<T>(
   keyOrInit?: string | (() => T | Ref<T>),
   init?: () => T | Ref<T>,
 ) {
+  console.log('B')
   const resolved = resolveUseState()
-
+  console.log('B2')
   if (resolved) {
+    console.log('B3')
     if (typeof keyOrInit === 'string' || keyOrInit === undefined) {
+      console.log('B4')
       // Ensure `init` is a function or undefined
       if (!_.isFunction(init) && init) {
+        console.log('B5')
         throw new Error(
           `useStateShim received key of type '${typeof keyOrInit}', init of type 'undefined | function' was expected (init of type '${typeof init})' received.`,
         )
       }
+      console.log('B6')
       return resolved(keyOrInit as string | undefined, init)
     }
 
     // Key is not a function or undefined
+    console.log('B7')
     if (!_.isFunction(keyOrInit) && keyOrInit) {
+      console.log('B8')
       throw new Error(
         `useStateShim 'key' must be of type 'string | undefined | (() => T | Ref<T>)', but value of type '${typeof keyOrInit}' was supplied.`,
       )
     }
 
+    console.log('B9')
     return resolved(keyOrInit)
   }
 
