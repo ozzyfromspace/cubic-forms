@@ -71,6 +71,7 @@ export default defineConfig({
         'immer',
         '#app',
         '@vitejs/plugin-vue',
+        '@nuxt/kit',
         ...builtinModules, // Externalize built-in modules without 'node:' prefix
         ...builtinModules.map((m) => `node:${m}`), // Externalize built-in modules with 'node:' prefix
         'globby', // Externalize globby
@@ -83,6 +84,7 @@ export default defineConfig({
         globals: {
           nuxt: 'Nuxt',
           '#app': 'NuxtApp',
+          '@nuxt/kit': 'NuxtKit',
         },
       },
     },
